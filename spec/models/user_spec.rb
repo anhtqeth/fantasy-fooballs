@@ -9,4 +9,14 @@ RSpec.describe User, type: :model do
     expect(subject).to be_valid 
   end
   
+  it "is not valid without first name" do
+    subject.first_name = nil
+    expect(subject).not_to be_valid 
+  end
+  
+  it "is not valid without last name" do
+    subject.last_name = nil
+    expect(subject).not_to be_valid 
+  end
+  
 end

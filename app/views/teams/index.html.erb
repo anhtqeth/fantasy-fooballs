@@ -1,0 +1,35 @@
+<div class="container">
+  <h3>Teams Management</h3>
+  <hr>
+  <h5>New Team</h5>
+  <div id="team-form">
+    <!--Create Match form -->
+  </div>
+  
+  <hr>
+  <!--Match list-->
+  <div id="matches-list">
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Players Count</th>
+          <th scope="col">Player 1</th>
+          <th scope="col">Player 2</th>
+          <th scope="col">Winrate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%@teams.each.with_index do |team,index|%>
+        <tr>
+          <th scope="row"><%=index%></th>
+          <!--<td><=user.first_name%></td>-->
+          <!--<td><=user.last_name%></td>-->
+          <td><button type="button" class="btn btn-info">Edit</button>
+          <button type="button" class="btn btn-danger">Delete</button></td>
+        </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="container">
+  <h3>Matches Management</h3>
+  <hr>
+  <h5>New Match</h5>
+  <div id="match-form">
+    <!--Create Match form -->
+  </div>
+  
+  <hr>
+  <!--Match list-->
+  <div id="matches-list">
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Blue Team</th>
+          <th scope="col">Red Team</th>
+          <th scope="col">Winner</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%@matches.each.with_index do |match,index|%>
+        <tr>
+          <th scope="row"><%=index%></th>
+          <!--<td><=user.first_name%></td>-->
+          <!--<td><=user.last_name%></td>-->
+          <td><button type="button" class="btn btn-info">Edit</button>
+          <button type="button" class="btn btn-danger">Delete</button></td>
+        </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>

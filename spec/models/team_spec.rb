@@ -4,7 +4,7 @@ RSpec.describe Team, type: :model do
   subject { described_class.new(name: 'Team A')}
   
   describe 'associations' do
-    it { should have_many(:games).through(:matchs) }
+    it { should have_many(:matchs).through(:games) }
   end
 
   

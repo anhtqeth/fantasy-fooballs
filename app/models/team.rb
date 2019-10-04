@@ -1,6 +1,5 @@
 class Team < ApplicationRecord
   has_many :users
-  has_many :matchs
-  has_many :games, :through => :matchs
-  
+  has_many :games
+  has_many :matchs, :through => :games
 end

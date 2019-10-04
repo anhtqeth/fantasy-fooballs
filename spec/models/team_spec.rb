@@ -12,5 +12,9 @@ RSpec.describe Team, type: :model do
     expect(t.macro).to eq(:has_many)
   end
   
+    
+  it "should have many game through match" do
+    expect(subject).to have_many(:games).through(:match) 
+  end
   
 end

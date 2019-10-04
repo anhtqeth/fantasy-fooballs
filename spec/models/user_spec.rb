@@ -20,10 +20,7 @@ RSpec.describe User, type: :model do
     expect(subject).not_to be_valid 
   end
   
-  
-  it "should have many game through match" do
-    expect(subject).to have_many(:games).through(:match) 
-  end
+
   
   #TODO Add scope for full name?
   

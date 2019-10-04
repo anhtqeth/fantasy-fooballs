@@ -12,7 +12,8 @@ class Match < ApplicationRecord
     teamB_rs = Game.where(team_id: teamB.id).map{|x| x.score}
     
     i = 0
-    3.times do
+    games_count = self.games.count/2
+    games_count.times do
       if teamA_rs[i] > teamB_rs[i]
         teamA_wincount +=1
       else

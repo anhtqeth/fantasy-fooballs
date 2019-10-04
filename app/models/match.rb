@@ -4,6 +4,7 @@ class Match < ApplicationRecord
  
   def winner
     
+    
   end
   
 end

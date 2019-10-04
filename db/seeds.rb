@@ -12,14 +12,17 @@ Team.destroy_all
   team.save
 end
 
-# Match.destroy_all
-# Game.destroy_all
+Match.destroy_all
+Game.destroy_all
 
-# 5.times do 
-#   match = Match.create
-#   team = Team.all.sample
-#   game = Game.create(score: [*0..10].sample,team: team, match: match)
-# end
+5.times do 
+  match = Match.create
+  game = Game.create(score: [*0..10].sample,team: Team.all.sample, match: match)
+  
+  
+  
+  
+end
 
 
 

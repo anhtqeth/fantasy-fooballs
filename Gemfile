@@ -23,6 +23,7 @@ gem 'faker', '~> 2.5'
 #Test
 gem 'rspec', '~> 3.8'
 gem 'rspec-rails', '~> 3.8', '>= 3.8.2'
+gem 'shoulda', '~> 3.6'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 

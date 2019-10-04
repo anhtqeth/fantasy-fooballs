@@ -22,5 +22,9 @@ RSpec.describe Game, type: :model do
     expect(subject).not_to be_valid 
   end
   
+  it "should have many team through match" do
+    expect(subject).to have_many(:teams).through(:match) 
+  end
+  
   
 end

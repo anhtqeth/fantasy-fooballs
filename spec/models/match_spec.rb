@@ -27,7 +27,7 @@ RSpec.describe Match, type: :model do
     
     Game.destroy_all
     #Create a Match with three games
-    2.times do
+    3.times do
       match = Match.first
       teamA = Team.first
       teamB = Team.second

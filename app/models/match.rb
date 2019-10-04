@@ -1,7 +1,7 @@
 class Match < ApplicationRecord
   has_many :games, dependent: :destroy
   has_many :teams, :through => :games
- 
+  
   def winner
     teamA = self.teams.distinct.first
     teamB = self.teams.distinct.second

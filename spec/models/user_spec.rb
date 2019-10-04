@@ -5,7 +5,6 @@ RSpec.describe User, type: :model do
     last_name: "Cage")
   }
   
-  it { expect(subject).to have_many(:games).through(:match) }
   
   it "is valid with valid attributes" do
     expect(subject).to be_valid 
@@ -22,9 +21,9 @@ RSpec.describe User, type: :model do
   end
   
   
-  # it "should have many game through match" do
-  #   expect(subject).to have_many(:games).through(:match) 
-  # end
+  it "should have many game through match" do
+    expect(subject).to have_many(:games).through(:match) 
+  end
   
   #TODO Add scope for full name?
   

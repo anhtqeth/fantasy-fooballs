@@ -3,6 +3,11 @@ require 'rails_helper'
 RSpec.describe Team, type: :model do
   subject { described_class.new(name: 'Team A')}
   
+  describe 'associations' do
+    it { should have_many(:games).through(:matchs) }
+  end
+
+  
   it "is valid with valid attributes" do
     expect(subject).to be_valid 
   end
@@ -11,10 +16,5 @@ RSpec.describe Team, type: :model do
     t = Team.reflect_on_association(:users)
     expect(t.macro).to eq(:has_many)
   end
-  
-    
-  it "should have many game through match" do
-    expect(subject).to have_many(:games).through(:match) 
-  end
-  
+
 end

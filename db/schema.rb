@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_03_121128) do
+ActiveRecord::Schema.define(version: 2019_10_04_024917) do
 
   create_table "games", force: :cascade do |t|
     t.integer "score"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 2019_10_03_121128) do
     t.string "last_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "team_id"
+    t.index ["team_id"], name: "index_users_on_team_id"
   end
 
 end

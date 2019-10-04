@@ -12,17 +12,14 @@ Team.destroy_all
   team.save
 end
 
-Game.destroy_all
-3.times do
-  game = Game.new
-  game.score = [0..10].sample
-  game.save
-end
+# Match.destroy_all
+# Game.destroy_all
 
-Match.destroy_all
-3.times do
-  f_match = Match.new
-  f_match.team_id = Team.all.sample.id
-  f_match.game_id = Game.all.sample.id
-  
-end
+# 5.times do 
+#   match = Match.create
+#   team = Team.all.sample
+#   game = Game.create(score: [*0..10].sample,team: team, match: match)
+# end
+
+
+

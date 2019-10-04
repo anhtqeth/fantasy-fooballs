@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Game, type: :model do
-   subject { described_class.new(score: 8, match: Match.new)}
+   subject { described_class.new(score: 8, match: Match.new,team: Team.new)}
   
   describe 'associations' do
     it { should belong_to(:match)}
-    #it { should belong_to(:match).class_name('Match') }
+     it { should belong_to(:team)}
   end
   
   it "is valid with valid attributes" do

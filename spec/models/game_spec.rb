@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Game, type: :model do
-   subject { described_class.new(score: 8)}
+   subject { described_class.new(score: 8, match: Match.new)}
   
   describe 'associations' do
-    it { should have_many(:teams).through(:matchs) }
+    it { should belong_to(:match)}
     #it { should belong_to(:match).class_name('Match') }
   end
   

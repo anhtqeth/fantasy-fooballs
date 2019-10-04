@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_04_024917) do
+ActiveRecord::Schema.define(version: 2019_10_04_040516) do
 
   create_table "games", force: :cascade do |t|
     t.integer "score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "match_id"
+    t.index ["match_id"], name: "index_games_on_match_id"
   end
 
   create_table "matches", force: :cascade do |t|

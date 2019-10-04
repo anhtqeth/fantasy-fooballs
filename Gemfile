@@ -46,7 +46,6 @@ group :test do
   gem 'rspec', '~> 3.8'
   gem 'rspec-rails', '~> 3.8', '>= 3.8.2'
   gem 'shoulda-matchers'
-  gem 'factory_girl', '~> 4.9'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
 end

@@ -5,6 +5,7 @@ RSpec.describe Game, type: :model do
   
   describe 'associations' do
     it { should have_many(:teams).through(:matchs) }
+    #it { should belong_to(:match).class_name('Match') }
   end
   
   it "is valid with valid attributes" do

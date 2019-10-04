@@ -2,6 +2,7 @@ User.destroy_all
 5.times do
   User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name)
 end
+
 Team.destroy_all
 2.times do
   team = Team.new
@@ -9,4 +10,19 @@ Team.destroy_all
   team.users << User.all.sample
   team.users << User.all.sample
   team.save
+end
+
+Game.destroy_all
+3.times do
+  game = Game.new
+  game.score = [0..10].sample
+  game.save
+end
+
+Match.destroy_all
+3.times do
+  f_match = Match.new
+  f_match.team_id = Team.all.sample.id
+  f_match.game_id = Game.all.sample.id
+  
 end

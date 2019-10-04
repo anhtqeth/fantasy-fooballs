@@ -1,4 +1,4 @@
 class Match < ApplicationRecord
-  belongs_to :team
-  belongs_to :game
+  has_many :games
+  has_many :teams,:through => :games
 end

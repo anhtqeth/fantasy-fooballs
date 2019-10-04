@@ -20,10 +20,7 @@ gem 'jquery-rails', '4.3.1'
 #Dev Data
 gem 'faker', '~> 2.5'
 
-#Test
-gem 'rspec', '~> 3.8'
-gem 'rspec-rails', '~> 3.8', '>= 3.8.2'
-gem 'shoulda', '~> 3.6'
+
 
 gem 'bootsnap', '>= 1.1.0', require: false
 
@@ -45,6 +42,10 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
+  #Test
+  gem 'rspec', '~> 3.8'
+  gem 'rspec-rails', '~> 3.8', '>= 3.8.2'
+  gem 'shoulda-matchers'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
 end

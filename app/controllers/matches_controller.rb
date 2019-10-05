@@ -16,7 +16,7 @@ class MatchesController < ApplicationController
       puts 'Team B GAME RESULTs'
       Game.create(score: v,team: Team.find(teamB_params[:id]), match: @match)
     end
-    debugger
+    
     if @match.save
       redirect_back(fallback_location: matches_path)
     else

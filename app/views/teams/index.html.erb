@@ -8,9 +8,8 @@
       <%= form_for(@team) do |f| %>  
         <%= f.label :team_name %>
         <%= f.text_field :name, class: 'form-control' %>
-     
         
-        <%= fields_for :users do |user| %>
+        <%= fields_for "team[users]" do |user| %>
           <%= user.select(:user1, options_from_collection_for_select(User.all, "id", "first_name"))%>
           <%= user.select(:user2, options_from_collection_for_select(User.all, "id", "first_name"))%>
         <% end %>

@@ -5,13 +5,11 @@ class TeamsController < ApplicationController
   end
   
   def create
-    @team      =  Team.new
+    @team     = Team.new
     @team.name = team_params[:name]
-    
-    #TODO -Fix
-    @team.users << User.find_by(params[:users][:user1])
-    @team.users << User.find_by(params[:users][:user2])
-    
+    team_params[:users].each do |k, v|
+      @team.users << User.find(v)
+    end
     @team.save
     if @team.save
       redirect_back(fallback_location: teams_path)

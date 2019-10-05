@@ -12,4 +12,8 @@ RSpec.describe Team, type: :model do
   it "is valid with valid attributes" do
     expect(subject).to be_valid 
   end
+  
+  it "can return winrate" do 
+    expect(subject.winrate).not_to be_nil
+  end
 end

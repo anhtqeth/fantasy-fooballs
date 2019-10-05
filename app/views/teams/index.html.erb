@@ -1,53 +1,55 @@
 <div class="container">
-  <h3>Teams Management</h3>
+  <h1>Teams Management</h1>
   <hr>
-  <h5>New Team</h5>
-  <div id="team-form">
-    <!--Create Match form -->
-    <%= form_for(@team) do |f| %>  
-      <%= f.label :team_name %>
-      <%= f.text_field :name, class: 'form-control' %>
-   
-      
-      <%= fields_for :users do |user| %>
-        <%= user.select(:user1, options_from_collection_for_select(User.all, "id", "first_name"))%>
-        <%= user.select(:user2, options_from_collection_for_select(User.all, "id", "first_name"))%>
+  <h4>Create a new Team</h4>
+  <div class="jumbotron">
+    <div id="team-form">
+      <!--Create Match form -->
+      <%= form_for(@team) do |f| %>  
+        <%= f.label :team_name %>
+        <%= f.text_field :name, class: 'form-control' %>
+     
+        
+        <%= fields_for :users do |user| %>
+          <%= user.select(:user1, options_from_collection_for_select(User.all, "id", "first_name"))%>
+          <%= user.select(:user2, options_from_collection_for_select(User.all, "id", "first_name"))%>
+        <% end %>
+        
+        
+        <%= f.submit "Add", class: "btn btn-primary" %>
       <% end %>
-      
-      
-      <%= f.submit "Add", class: "btn btn-primary" %>
-    <% end %>
-  </div>
-  
-  <hr>
-  <!--Match list-->
-  <div id="matches-list">
-    <table class="table table-dark">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Team Name</th>
-          <th scope="col">Players Count</th>
-          <th scope="col">Player 1</th>
-          <th scope="col">Player 2</th>
-          <th scope="col">Winrate</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <%@teams.each.with_index do |team,index|%>
-        <tr>
-          <th scope="row"><%=index%></th>
-          <td><%=team.name%></td>
-          <td><%=team.users.count%></td>
-          <td><%=team.users.first.first_name if team.users.first.present?%></td>
-          <td><%= team.users.second.first_name if team.users.second.present?%></td>
-          <td>0%</td>
-          <td><button type="button" class="btn btn-info">Edit</button>
-          <%= link_to "Delete", team, method: :delete, data: { confirm: "Delete this Team?" },class: "btn btn-danger" %>
-        </tr>
-        <%end%>
-      </tbody>
-    </table>
+    </div>
+    
+    <hr>
+    <!--Match list-->
+    <div id="matches-list">
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Team Name</th>
+            <th scope="col">Players Count</th>
+            <th scope="col">Player 1</th>
+            <th scope="col">Player 2</th>
+            <th scope="col">Winrate</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%@teams.each.with_index do |team,index|%>
+          <tr>
+            <th scope="row"><%=index%></th>
+            <td><%=team.name%></td>
+            <td><%=team.users.count%></td>
+            <td><%=team.users.first.first_name if team.users.first.present?%></td>
+            <td><%= team.users.second.first_name if team.users.second.present?%></td>
+            <td>0%</td>
+            <td><button type="button" class="btn btn-info">Edit</button>
+            <%= link_to "Delete", team, method: :delete, data: { confirm: "Delete this Team?" },class: "btn btn-danger" %>
+          </tr>
+          <%end%>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

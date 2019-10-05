@@ -15,7 +15,7 @@ end
 
 Match.destroy_all
 1.times do 
-   match = Match.create
+   Match.create
 end
 Game.destroy_all
 #Create a Match with three games

@@ -7,13 +7,11 @@ class TeamsController < ApplicationController
   def create
     @team      =  Team.new
     @team.name = team_params[:name]
-    puts 'CONTROLERR TEST'
-    puts params[:users]
-    puts User.find_by(params[:users][:user1]).first_name
-    puts User.find_by(params[:users][:user2]).first_name
-    puts params[:users][:user1].is_a? Integer
+    
+    #TODO -Fix this
     @team.users << User.find_by(params[:users][:user1])
     @team.users << User.find_by(params[:users][:user2])
+    
     @team.save
     if @team.save
       redirect_back(fallback_location: teams_path)

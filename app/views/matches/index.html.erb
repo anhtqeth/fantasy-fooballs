@@ -2,55 +2,69 @@
   <h1>Matches Management</h1>
   <hr>
   <h4>Add a New Match</h4>
-  <hr>
-  <div id="match-form">
-    <!--Create Match form -->
-    <%= form_for(@match) do |f| %>  
-      
-      <h5>Which team are fighting together?</h5>
-      <hr>
-      <%= fields_for :teams do |team| %>
-        <p>Blue Team <%= team.select(:team1, options_from_collection_for_select(Team.all, "id", "name"))%></p>
-        <p>Red Team <%= team.select(:user2, options_from_collection_for_select(Team.all, "id", "name"))%></p>
+  <div class="jumbotron">
+    <div id="match-form">
+      <!--Create Match form -->
+      <%= form_for(@match) do |f| %>  
+        <h5>What is the result of each game?</h5>
+        <hr>
+        <div class ="row">
+          <div class="col">
+            <h5>Blue Team</h5>
+            <%= fields_for :teamAgames do |game| %>
+             
+              <%= game.select(:id, options_from_collection_for_select(Team.all, "id", "name"))%>
+              <hr>
+              <%= fields_for :teamAscores do |score| %>
+                <p><%= score.select :game1, @score_range%> </p>
+                <p><%= score.select :game2, @score_range%> </p>
+                <p><%= score.select :game3, @score_range%> </p>
+              <%end%>
+            <% end %>
+          </div>
+          <div class="col">
+             <h5>Red Team</h5>
+             <%= fields_for :teamBgames do |game| %>
+               <%= game.select(:id, options_from_collection_for_select(Team.all, "id", "name"))%>
+                <hr>
+               <%= fields_for :teamBscores do |score| %>
+                <p><%= score.select :game1, @score_range%> </p>
+                <p><%= score.select :game2, @score_range%> </p>
+                <p><%= score.select :game3, @score_range%> </p>
+              <%end%>
+              <% end %>
+          </div>
+        </div>
+        
+        <%= f.submit "Add", class: "btn btn-primary" %>
       <% end %>
-      
-      <h5>What is the result of each game?</h5>
-      <hr>
-      <%= fields_for :games do |game| %>
-         <p>Game 1 </p> 
-         <!--<= game.select(:game1, options_from_collection_for_select(@score_range, "id", "name"))%>-->
-         <p>Game 2 </p>
-         <p>Game 3 </p>
-      <% end %>
-      
-      <%= f.submit "Add", class: "btn btn-primary" %>
-    <% end %>
-  </div>
-  
-  <hr>
-  <!--Match list-->
-  <div id="matches-list">
-    <table class="table table-dark">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Blue Team</th>
-          <th scope="col">Red Team</th>
-          <th scope="col">Winner</th>
-        </tr>
-      </thead>
-      <tbody>
-        <%@matches.each.with_index do |match,index|%>
-        <tr>
-          <th scope="row"><%=index%></th>
-          <td><%=match.teams.distinct.first.name%></td>
-          <td><%=match.teams.distinct.second.name%></td>
-          <td><%=match.winner.name%></td>
-          <td><button type="button" class="btn btn-info">Edit</button>
-          <button type="button" class="btn btn-danger">Delete</button></td>
-        </tr>
-        <%end%>
-      </tbody>
-    </table>
+    </div>
+    
+    <hr>
+    <!--Match list-->
+    <div id="matches-list">
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Blue Team</th>
+            <th scope="col">Red Team</th>
+            <th scope="col">Winner</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%@matches.each.with_index do |match,index|%>
+          <tr>
+            <th scope="row"><%=index%></th>
+            <td><%=match.teams.distinct.first.name if match.teams.present?%></td>
+            <td><%=match.teams.distinct.second.name if match.teams.present?%></td>
+            <td><%=match.winner.name if match.teams.present? %></td>
+            <td><button type="button" class="btn btn-info">Edit</button>
+            <button type="button" class="btn btn-danger">Delete</button></td>
+          </tr>
+          <%end%>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

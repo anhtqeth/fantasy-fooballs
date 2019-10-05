@@ -1,12 +1,12 @@
 class MatchesController < ApplicationController
   def index
-    @matches = Match.all
-    @match   = Match.new
+    @matches     = Match.all
+    @match       = Match.new
     @score_range = *(0..10)
   end
   
   def create
-    @match =  Match.create
+    @match = Match.create
     teamA_params[:scores].each do |k, v|
       puts 'Team AGAME RESULTs'
       Game.create(score: v,team: Team.find(teamA_params[:id]), match: @match)

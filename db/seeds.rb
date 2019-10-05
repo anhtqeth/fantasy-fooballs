@@ -23,8 +23,8 @@ Game.destroy_all
   match = Match.first
   teamA = Team.first
   teamB = Team.second
-  game = Game.create(score: [*0..10].sample,team: teamA, match: match)
-  game = Game.create(score: [*0..10].sample,team: teamB, match: match)
+  game  = Game.create(score: [*0..10].sample,team: teamA, match: match)
+  game  = Game.create(score: [*0..10].sample,team: teamB, match: match)
 end
 
 

@@ -22,7 +22,7 @@ RSpec.describe User, type: :model do
   
   it "can show full name" do 
     expect(subject.full_name).not_to be_nil
-    expect(subject.full_name).to equal("Johny Cage")
+    expect(subject.full_name).to eq("Johny Cage")
   end
   
   #TODO Add scope for full name?

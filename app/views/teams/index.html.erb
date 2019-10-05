@@ -37,8 +37,8 @@
             <th scope="row"><%=index%></th>
             <td><%= team.name%></td>
             <td><%= team.users.count%></td>
-            <td><%= team.users.first.first_name if team.users.first.present?%></td>
-            <td><%= team.users.second.first_name if team.users.second.present?%></td>
+            <td><%= team.users.first.full_name if team.users.first.present?%></td>
+            <td><%= team.users.second.full_name if team.users.second.present?%></td>
             <td><h4><span class="badge badge-warning"><%= number_to_percentage(team.winrate * 100, precision: 0)%></span></h4></td>
             <td><button type="button" class="btn btn-info">Edit</button>
             <%= link_to "Delete", team, method: :delete, data: { confirm: "Delete this Team?" },class: "btn btn-danger" %>

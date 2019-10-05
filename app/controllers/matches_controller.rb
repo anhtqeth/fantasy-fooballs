@@ -1,34 +1,26 @@
 class MatchesController < ApplicationController
   def index
     @matches = Match.all
-    @match   = Match.new(params[:team])
+    @match   = Match.new
     @score_range = *(0..10)
   end
   
   def create
-    @match =  Match.new
-    
-    #teamA_result = params[:teamAgames]
-    teamA_score = params[:teamAscores]
-    teamB_score = params[:teamBscores]
-    
-    teamA_score.each do |score|
-      Game.create(score: score,team: Team.find(params[:teamAgames][:id]), match: @match)
+    @match =  Match.create
+    teamA_params[:scores].each do |k, v|
+      puts 'Team AGAME RESULTs'
+      Game.create(score: v,team: Team.find(teamA_params[:id]), match: @match)
     end
     
-    teamB_score.each do |score|
-      Game.create(score: score,team: Team.find(params[:teamBgames][:id]), match: @match)
+    teamB_params[:scores].each do |k, v|
+      puts 'Team B GAME RESULTs'
+      Game.create(score: v,team: Team.find(teamB_params[:id]), match: @match)
     end
-    
-    #Params is team and match id
-    # Match.create(params[:match])
-    # Game.create(params[:games])
-    #Create game with nested attribute
-    #Game.create(score: [*0..10].sample,team: teamA, match: match)
+    debugger
     if @match.save
       redirect_back(fallback_location: matches_path)
     else
-     
+      
     end
   end
   
@@ -41,9 +33,19 @@ class MatchesController < ApplicationController
   end
   
   def destroy
-  
+    Match.find(params[:id]).destroy
+    flash.now[:success] = "Match Deleted!"
+    redirect_back(fallback_location: matches_path)
   end
   
-  private
+  private 
+    def teamA_params
+      params.require(:teamAgames).permit(:id, { scores: [:game1, :game2, :game3]})
+    end
     
+    def teamB_params
+      params.require(:teamBgames).permit(:id, { scores: [:game1, :game2, :game3]})
+    end
+  
+  
 end

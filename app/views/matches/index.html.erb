@@ -11,28 +11,25 @@
         <div class ="row">
           <div class="col">
             <h5>Blue Team</h5>
-            <%= fields_for :teamAgames do |game| %>
-             
-              <%= game.select(:id, options_from_collection_for_select(Team.all, "id", "name"))%>
+              <%=select(:teamAgames,:id,options_from_collection_for_select(Team.all, :id, :name))%>
+              <!--<= select(:teamAgames,:id,options_for_select(Team.all.map{|x| x.name}))%>-->
               <hr>
-              <%= fields_for :teamAscores do |score| %>
+              <%= fields_for "teamAgames[scores]" do |score| %>
                 <p><%= score.select :game1, @score_range%> </p>
                 <p><%= score.select :game2, @score_range%> </p>
                 <p><%= score.select :game3, @score_range%> </p>
               <%end%>
-            <% end %>
           </div>
           <div class="col">
              <h5>Red Team</h5>
-             <%= fields_for :teamBgames do |game| %>
-               <%= game.select(:id, options_from_collection_for_select(Team.all, "id", "name"))%>
-                <hr>
-               <%= fields_for :teamBscores do |score| %>
+               <%=select(:teamBgames,:id,options_from_collection_for_select(Team.all, :id, :name))%>
+              <!--<= select(:teamBgames,:id,options_for_select(Team.all.map{|x| x.name}))%>-->
+              <hr>
+              <%= fields_for "teamBgames[scores]" do |score| %>
                 <p><%= score.select :game1, @score_range%> </p>
                 <p><%= score.select :game2, @score_range%> </p>
                 <p><%= score.select :game3, @score_range%> </p>
               <%end%>
-              <% end %>
           </div>
         </div>
         
@@ -60,8 +57,8 @@
             <td><%=match.teams.distinct.second.name if match.teams.present?%></td>
             <td><%=match.winner.name if match.teams.present? %></td>
             <td><button type="button" class="btn btn-info">Edit</button>
-            <button type="button" class="btn btn-danger">Delete</button></td>
-          </tr>
+            <%= link_to "Delete", match, method: :delete, data: { confirm: "Delete this Match?" },class: "btn btn-danger" %>
+            </tr>
           <%end%>
         </tbody>
       </table>

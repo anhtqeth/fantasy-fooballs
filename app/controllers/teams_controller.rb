@@ -8,7 +8,7 @@ class TeamsController < ApplicationController
     @team      =  Team.new
     @team.name = team_params[:name]
     
-    #TODO -Fix this
+    #TODO -Fix
     @team.users << User.find_by(params[:users][:user1])
     @team.users << User.find_by(params[:users][:user2])
     

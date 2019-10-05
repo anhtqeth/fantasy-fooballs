@@ -10,8 +10,8 @@ class Match < ApplicationRecord
     teamA_wincount = 0
     teamB_wincount = 0
     
-    teamA_rs = Game.where(team_id: teamA.id).map{|x| x.score}
-    teamB_rs = Game.where(team_id: teamB.id).map{|x| x.score}
+    teamA_rs = Game.where(team_id: teamA.id,match_id: self.id).map{|x| x.score}
+    teamB_rs = Game.where(team_id: teamB.id,match_id: self.id).map{|x| x.score}
     
     i           = 0
     games_count = self.games.count/2

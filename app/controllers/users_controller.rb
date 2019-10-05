@@ -1,7 +1,13 @@
 class UsersController < ApplicationController
   
+    
+  def index
+    @users = User.all
+    @user =  User.new(params[:user])
+  end
+
+  
   def create
-    #@user =  User.new(params[:user])
     @user =  User.new(user_params)
     if @user.save
       redirect_back(fallback_location: users_path)
@@ -9,17 +15,7 @@ class UsersController < ApplicationController
      
     end
   end
-  
-  def index
-    @users = User.all
-    @user =  User.new(params[:user])
-  end
-   
-  # def create
-  #   @user = User.new 
-    
-  # end
-  
+
   def edit
     @user = User.find(params[:id])
   end

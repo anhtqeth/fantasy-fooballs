@@ -1,9 +1,30 @@
 <div class="container">
-  <h3>Matches Management</h3>
+  <h1>Matches Management</h1>
   <hr>
-  <h5>New Match</h5>
+  <h4>Add a New Match</h4>
+  <hr>
   <div id="match-form">
     <!--Create Match form -->
+    <%= form_for(@match) do |f| %>  
+      
+      <h5>Which team are fighting together?</h5>
+      <hr>
+      <%= fields_for :teams do |team| %>
+        <p>Blue Team <%= team.select(:team1, options_from_collection_for_select(Team.all, "id", "name"))%></p>
+        <p>Red Team <%= team.select(:user2, options_from_collection_for_select(Team.all, "id", "name"))%></p>
+      <% end %>
+      
+      <h5>What is the result of each game?</h5>
+      <hr>
+      <%= fields_for :games do |game| %>
+         <p>Game 1 </p> 
+         <!--<= game.select(:game1, options_from_collection_for_select(@score_range, "id", "name"))%>-->
+         <p>Game 2 </p>
+         <p>Game 3 </p>
+      <% end %>
+      
+      <%= f.submit "Add", class: "btn btn-primary" %>
+    <% end %>
   </div>
   
   <hr>
@@ -22,8 +43,9 @@
         <%@matches.each.with_index do |match,index|%>
         <tr>
           <th scope="row"><%=index%></th>
-          <!--<td><=user.first_name%></td>-->
-          <!--<td><=user.last_name%></td>-->
+          <td><%=match.teams.distinct.first.name%></td>
+          <td><%=match.teams.distinct.second.name%></td>
+          <td><%=match.winner.name%></td>
           <td><button type="button" class="btn btn-info">Edit</button>
           <button type="button" class="btn btn-danger">Delete</button></td>
         </tr>

@@ -19,9 +19,8 @@ RSpec.describe User, type: :model do
     subject.last_name = nil
     expect(subject).not_to be_valid 
   end
-  
 
-  
   #TODO Add scope for full name?
+  
   
 end

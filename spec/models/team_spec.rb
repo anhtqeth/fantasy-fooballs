@@ -15,5 +15,6 @@ RSpec.describe Team, type: :model do
   
   it "can return winrate" do 
     expect(subject.winrate).not_to be_nil
+    expect(subject.winrate).to be_instance_of(Float)
   end
 end

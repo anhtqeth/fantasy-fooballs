@@ -6,14 +6,13 @@ class MatchesController < ApplicationController
   end
   
   def create
+    #TODO - Prevent same team match
     @match = Match.create
     teamA_params[:scores].each do |k, v|
-      puts 'Team AGAME RESULTs'
       Game.create(score: v,team: Team.find(teamA_params[:id]), match: @match)
     end
     
     teamB_params[:scores].each do |k, v|
-      puts 'Team B GAME RESULTs'
       Game.create(score: v,team: Team.find(teamB_params[:id]), match: @match)
     end
     

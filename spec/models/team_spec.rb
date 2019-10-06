@@ -29,5 +29,14 @@ RSpec.describe Team, type: :model do
     expect(subject.winrate).not_to be_nil
     expect(subject.winrate).to be_instance_of(Float)
   end
+  
+  it "can show team and winrate list" do
+    ranked_list = Team.ranked_list
+    expect(ranked_list).not_to be_empty
+    expect(ranked_list.first.winrate).to be_instance_of(Float)
+    expect(ranked_list.first.wins).to be_instance_of(Integer)
+    expect(ranked_list.first.losess).to be_instance_of(Integer)
+    expect(ranked_list.first.name).to be_instance_of(String)
+  end
 
 end

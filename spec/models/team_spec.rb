@@ -13,6 +13,13 @@ RSpec.describe Team, type: :model do
     it {should validate_presence_of(:name)}
   end
   
+  it 'limt the number of users' do
+    subject.users << User.create(first_name: 'Anh',last_name: 'Truong')
+    subject.users << User.create(first_name: 'Anh',last_name: 'Truong')
+    subject.users << User.create(first_name: 'Anh',last_name: 'Truong')
+    expect(subject.save).not_to be true
+  end
+  
   it "is valid with valid attributes" do
     expect(subject).to be_valid 
   end

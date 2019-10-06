@@ -22,6 +22,7 @@
             <th scope="col">#</th>
             <th scope="col">First</th>
             <th scope="col">Last</th>
+            <th scope="col">Full Name</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -31,6 +32,7 @@
             <th scope="row"><%=index%></th>
             <td><%=user.first_name%></td>
             <td><%=user.last_name%></td>
+            <td><%=user.full_name%></td>
             <td><button type="button" class="btn btn-info">Edit</button>
             <%= link_to "Delete", user, method: :delete, data: { confirm: "Delete User #{user.first_name}" },class: "btn btn-danger" %>
           </tr>

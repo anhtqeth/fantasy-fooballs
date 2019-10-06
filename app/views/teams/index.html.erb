@@ -27,6 +27,8 @@
             <th scope="col">Players Count</th>
             <th scope="col">Player 1</th>
             <th scope="col">Player 2</th>
+            <th scope="col">Win</th>
+            <th scope="col">Losses</th>
             <th scope="col">Winrate</th>
             <th scope="col">Action</th>
           </tr>
@@ -39,6 +41,8 @@
             <td><%= team.users.count%></td>
             <td><%= team.users.first.full_name if team.users.first.present?%></td>
             <td><%= team.users.second.full_name if team.users.second.present?%></td>
+            <td><%= (team.matchs.distinct.count * team.winrate).to_i %></td>
+            <td><%= team.matchs.distinct.count - ((team.matchs.distinct.count * team.winrate).to_i)%></td>
             <td><h4><span class="badge badge-warning"><%= number_to_percentage(team.winrate * 100, precision: 0)%></span></h4></td>
             <td><button type="button" class="btn btn-info">Edit</button>
             <%= link_to "Delete", team, method: :delete, data: { confirm: "Delete this Team?" },class: "btn btn-danger" %>

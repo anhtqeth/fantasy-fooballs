@@ -17,4 +17,6 @@ class Team < ApplicationRecord
     total_matchs == 0 ? 0.0 : (win_match.to_f/total_matchs).round(3)
   end
   
+  
+  
 end

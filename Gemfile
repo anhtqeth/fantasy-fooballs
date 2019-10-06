@@ -16,7 +16,7 @@ gem 'jbuilder', '~> 2.5'
 #UI
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails', '4.3.1'
-
+gem "chartkick"
 #Dev Data
 gem 'faker', '~> 2.5'
 

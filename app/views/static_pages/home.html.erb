@@ -3,11 +3,36 @@
   <h1>SEASON OVERVIEW</h1>
   <hr>
   <div class="jumbotron">
-    <h1></h1>
+    
     
     
   </div>
-  <h3></h3>
+  
+  
+  <div class="jumbotron">
+    <h3>Team Ranking in this season</h3>
+    <hr>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Rank</th>
+          <th scope="col">Team Name</th>
+          <th scope="col">Total Match</th>
+          <th scope="col">Winrate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%@ranked_list.each do |team|%>
+          <tr>
+            <th scope="row"></th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
   
   <h3></h3>
   

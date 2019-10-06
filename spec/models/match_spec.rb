@@ -27,7 +27,7 @@ RSpec.describe Match, type: :model do
     
     Game.destroy_all
     #Create a Match with three games
-    3.times do
+    4.times do
       match = Match.first
       teamA = Team.first
       teamB = Team.second
@@ -40,6 +40,7 @@ RSpec.describe Match, type: :model do
     it { should have_many(:games)}
     it { should have_many(:teams).through(:games) }
   end
+  
   
   it "must return a winner by team" do 
     match = Match.first

@@ -1,7 +1,7 @@
 class Team < ApplicationRecord
   validates :name, presence: true,uniqueness: true
   validates :user_id, uniqueness: true
-  has_many :users
+  has_many :users, dependent: :destroy
   has_many :games, dependent: :destroy
   has_many :matchs, :through => :games
   

@@ -1,8 +1,10 @@
 class Team < ApplicationRecord
+  validates :name, presence: true,uniqueness: true
   
   has_many :users
   has_many :games, dependent: :destroy
   has_many :matchs, :through => :games
+  
   
   
   def winrate

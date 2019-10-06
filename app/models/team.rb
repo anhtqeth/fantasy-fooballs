@@ -5,7 +5,7 @@ class Team < ApplicationRecord
   has_many :games, dependent: :destroy
   has_many :matchs, :through => :games
   
-
+  validate :validate_max_users
   
   def winrate
     #Initialize matchs for current team
@@ -21,6 +21,13 @@ class Team < ApplicationRecord
     total_matchs == 0 ? 0.0 : (win_match.to_f/total_matchs).round(3)
   end
   
+  private
+    def validate_max_users
+     if self.users.size > 2
+      errors[:base] << "Team can only has maximum of two users"
+     end
+    end
+
   
   
 end

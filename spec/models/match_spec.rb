@@ -2,10 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Match, type: :model do
   subject { described_class.new}
-  #This is copied from seed, as I need to test the winner method with some test data
-  #FactoryGirl can be used to set these up, but I don't wanna spend time set it up.
+  #Copied from seed, to test winner method
   before(:each) do
-  
     5.times do
       User.create(first_name: Faker::Name.first_name, 
       last_name: Faker::Name.last_name)
@@ -35,6 +33,7 @@ RSpec.describe Match, type: :model do
       game = Game.create(score: [*0..10].sample,team: teamB, match: match)
     end
   end
+  #test data
   
   describe 'associations' do
     it { should have_many(:games)}

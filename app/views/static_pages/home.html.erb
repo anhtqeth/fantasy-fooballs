@@ -3,13 +3,6 @@
   <h1>SEASON OVERVIEW</h1>
   <hr>
   <div class="jumbotron">
-    
-    
-    
-  </div>
-  
-  
-  <div class="jumbotron">
     <h3>Team Ranking in this season</h3>
     <hr>
     <table class="table">
@@ -18,16 +11,20 @@
           <th scope="col">Rank</th>
           <th scope="col">Team Name</th>
           <th scope="col">Total Match</th>
+          <th scope="col">Wins</th>
+          <th scope="col">Losses</th>
           <th scope="col">Winrate</th>
         </tr>
       </thead>
       <tbody>
-        <%@ranked_list.each do |team|%>
+        <%@ranked_list.each.with_index do |t,index|%>
           <tr>
-            <th scope="row"></th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <th scope="row"><h4><span class="badge badge-pill badge-info"><%=index+=1%></span></h4></th>
+            <td><h5><%=t[:team][:name] %></h5></td>
+            <td><h6><%=t[:total_match] %></h6></td>
+            <td><h6><%=t[:wins] %></h6></td>
+            <td><h6><%=t[:losses] %></h6></td>
+            <td><h5><span class="badge badge-pill badge-warning"><%=number_to_percentage(t[:winrate] * 100, precision: 0) %></span></h5></td>
           </tr>
         <%end%>
       </tbody>

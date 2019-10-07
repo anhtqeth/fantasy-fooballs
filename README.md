@@ -33,26 +33,77 @@ Reasons? It was time consuming for a small app to test the navigation while the 
 
 - The heroku app was deployed with preexisting data from db:seed. This is to see the full webapp in motion. If run on an empty data set, there will be error. 
 
+### Notable Method
+
+Below method used to calculate Winrate of a team. Return result is a float.
+This number is later used to calculate the percentage.
+~~~~
+#team.rb
+def winrate
+    #Initialize matchs for current team
+    matchs       = self.matchs.distinct
+    total_matchs = self.matchs.distinct.count
+    win_match    = 0
+    
+    #Iterate through all matchs, increase win_match if winner is "self"
+    matchs.each do  |match|
+      win_match += 1 if match.winner == self
+    end
+    #Rule out zero divider exception, convert result to float rounded to 3
+    total_matchs == 0 ? 0.0 : (win_match.to_f/total_matchs).round(3)
+  end
+ 
+#On view that show winrate
+<td><h5><span class="badge badge-pill badge-warning"><%=number_to_percentage(t[:winrate] * 100, precision: 0) %></span></h5></td>
+~~~~
+
+- Ranked List
+I want to keep the initial reqs with the less change as possible (Team attribute is name and users) So the below method was used to return a ranked list base on winrate of team. 
+~~~~
+def self.ranked_list
+    ranked_list = []
+    #Iterate Over teams, create an array of hashes contain winrate
+    Team.all.each do |team|
+      team_result = {:team=>nil, :wins=> nil,
+      :losses => nil,:total_match=>nil,:winrate=>nil}
+      
+      total_match = team.matchs.distinct.count
+      wins        = (total_match * team.winrate).to_i
+      losses      = total_match - wins
+      team_result.store(:team, team)
+      team_result.store(:total_match,total_match)
+      team_result.store(:wins,wins)
+      team_result.store(:losses,losses)
+      team_result.store(:winrate,team.winrate)
+      ranked_list << team_result
+    end
+    #Descending sorting
+    ranked_list.sort_by {|k| k[:winrate] }.reverse
+  end
+~~~~
+
 # Improvements 
 - Pagination can be added for Team/Users/Match index page
+- Ajax can be added at some page to dynamically show team ranking. 
 - An authentication module can be integrated so only admin can edit team/match/records
 - Model Design can be rework as I was followed the rule (Game can only has a score attribute)
 - As score of each team is recorded under the db. This stat can be used to analyze the Team's performance on a deeper manner.
 - We can also check the detail match and game score of each team.
+- Testing Data in Rspec is repeating. I did not used gem like FactoryGirl to setup test data, hence some of the rspec model testing used duplicate data creation. 
 
 # Rails & Ruby Version 
 
 - [Rails 5.2.3](https://rubygems.org/gems/rails/versions/5.2.3)
-- Ruby v 2.4.1p111
+- [Ruby v 2.4.1](https://www.ruby-lang.org/en/news/2017/03/22/ruby-2-4-1-released/)
 
 # Gem Used
 For full list of gems used, please refer to gemfile inside the project
 
-- [Rspec](https://rubygems.org/gems/rspec)
-- [Rspec Rails](https://rubygems.org/gems/rspec-rails)
-- [Shoulda](https://rubygems.org/gems/shoulda)
-- [Faker](https://rubygems.org/gems/faker)
-- [Bootstrap](https://getbootstrap.com/)
+- [Rspec](https://rubygems.org/gems/rspec) For TDD development
+- [Rspec Rails](https://rubygems.org/gems/rspec-rails) For TDD development
+- [Shoulda](https://rubygems.org/gems/shoulda) For easier of writing association test
+- [Faker](https://rubygems.org/gems/faker) Generate Random Name
+- [Bootstrap](https://getbootstrap.com/) A usable UI 
 
 # Built with
 

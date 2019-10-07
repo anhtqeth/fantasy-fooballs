@@ -41,7 +41,6 @@ RSpec.describe Team, type: :model do
   
   describe 'validations' do 
     it {should validate_uniqueness_of(:name)}
-    it {should validate_uniqueness_of(:user_id)}
     it {should validate_presence_of(:name)}
   end
   
@@ -64,10 +63,10 @@ RSpec.describe Team, type: :model do
   it "can show team and winrate list" do
     ranked_list = Team.ranked_list
     expect(ranked_list).not_to be_empty
-    expect(ranked_list.first.winrate).to be_instance_of(Float)
-    expect(ranked_list.first.wins).to be_instance_of(Integer)
-    expect(ranked_list.first.losess).to be_instance_of(Integer)
-    expect(ranked_list.first.team.name).to be_instance_of(String)
+    expect(ranked_list.first[:winrate]).to be_instance_of(Float)
+    expect(ranked_list.first[:wins]).to be_instance_of(Integer)
+    expect(ranked_list.first[:losess]).to be_nil || expect(ranked_list.first[:losess]).be_instance_of(Integer) 
+    expect(ranked_list.first[:team][:name]).to be_instance_of(String)
   end
 
 end

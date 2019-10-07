@@ -1,6 +1,5 @@
 class Team < ApplicationRecord
   validates :name, presence: true,uniqueness: true
-  #validates :user_id, uniqueness: true
   has_many :users
   has_many :games, dependent: :destroy
   has_many :matchs, :through => :games
@@ -21,9 +20,10 @@ class Team < ApplicationRecord
     total_matchs == 0 ? 0.0 : (win_match.to_f/total_matchs).round(3)
   end
   
+  #Used to return a ranked list base on winrate
   def self.ranked_list
     ranked_list = []
-    
+    #Iterate Over teams, create an array of hashes contain winrate
     Team.all.each do |team|
       team_result = {:team=>nil, :wins=> nil,
       :losses => nil,:total_match=>nil,:winrate=>nil}
@@ -38,12 +38,14 @@ class Team < ApplicationRecord
       team_result.store(:winrate,team.winrate)
       ranked_list << team_result
     end
+    #Descending sorting
     ranked_list.sort_by {|k| k[:winrate] }.reverse
   end
   
   
   
   private
+    #Maximum memeber is two
     def validate_max_users
      if self.users.size > 2
       errors[:base] << "Team can only has maximum of two users"

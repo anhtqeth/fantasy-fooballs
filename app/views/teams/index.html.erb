@@ -1,21 +1,7 @@
 <div class="container">
   <h1>Teams Management</h1>
   <hr>
-  <h4>Create a new Team</h4>
-  <div class="jumbotron">
-    <div id="team-form">
-      <!--Create Match form -->
-      <%= form_for(@team) do |f| %>  
-        <%= f.label :team_name %>
-        <%= f.text_field :name, class: 'form-control' %>
-        <%= fields_for "team[users]" do |user| %>
-          <%= user.select(:user1, options_from_collection_for_select(User.all, "id", "first_name"))%>
-          <%= user.select(:user2, options_from_collection_for_select(User.all, "id", "first_name"))%>
-        <% end %>
-        <%= f.submit "Add", class: "btn btn-primary" %>
-      <% end %>
-    </div>
-    
+    <%= link_to "Add New Team", new_team_path,class: "btn btn-success" %>
     <hr>
     <!--Match list-->
     <div id="matches-list">
@@ -44,7 +30,7 @@
             <td><%= (team.matchs.distinct.count * team.winrate).to_i %></td>
             <td><%= team.matchs.distinct.count - ((team.matchs.distinct.count * team.winrate).to_i)%></td>
             <td><h4><span class="badge badge-warning"><%= number_to_percentage(team.winrate * 100, precision: 0)%></span></h4></td>
-            <td><button type="button" class="btn btn-info">Edit</button>
+            <td><%= link_to "Edit", edit_team_path(team),class: "btn btn-info" %>
             <%= link_to "Delete", team, method: :delete, data: { confirm: "Delete this Team?" },class: "btn btn-danger" %>
           </tr>
           <%end%>

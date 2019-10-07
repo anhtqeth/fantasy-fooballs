@@ -7,7 +7,7 @@ class MatchesController < ApplicationController
   
   def create
     #TODO - Prevent same team match
-    @match = Match.create
+    @match = Match.new
     teamA_params[:scores].each do |k, v|
       Game.create(score: v,team: Team.find(teamA_params[:id]), match: @match)
     end
@@ -15,6 +15,7 @@ class MatchesController < ApplicationController
     teamB_params[:scores].each do |k, v|
       Game.create(score: v,team: Team.find(teamB_params[:id]), match: @match)
     end
+    
     
     if @match.save
       redirect_back(fallback_location: matches_path)

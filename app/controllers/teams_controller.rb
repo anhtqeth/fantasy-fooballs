@@ -1,30 +1,40 @@
 class TeamsController < ApplicationController
   def index
-    @teams = Team.all
-    @team  =  Team.new(params[:team])
+    @teams = Team.all.order('created_at desc')
   end
   
   def create
-    @team     = Team.new
-    @team.name = team_params[:name]
-    team_params[:users].each do |k, v|
-      @team.users << User.find(v)
-    end
-    @team.save
+    @team = Team.new(team_params)
     if @team.save
-      flash[:success] = "Team Added"
-      redirect_back(fallback_location: teams_path)
+      flash[:success] = "Team Added!"
+      redirect_to teams_path
     else
-      flas
+      render 'new'
     end
   end
+  
+  def new
+    @team = Team.new
+  end
+  
   
   def show
   
   end
   
+  def edit
+    @team = Team.find(params[:id])
+  end
+  
   def update
-
+    @team = Team.find(params[:id])
+    
+    if @team.update_attributes(team_params)
+      flash[:success] = "Team Updated!"
+      redirect_to teams_path
+    else
+      render 'new'
+    end
   end
   
   def destroy
@@ -35,7 +45,7 @@ class TeamsController < ApplicationController
   
   private
   def team_params
-      params.require(:team).permit(:name, { users: [:user1, :user2] })
+      params.require(:team).permit(:name, user_ids: [])
   end
   
 end

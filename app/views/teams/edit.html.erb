@@ -1,0 +1,15 @@
+<h4>Edit a new <%=@team.name%></h4>
+<div class="jumbotron">
+    <div id="team-form">
+      <!--Create Match form -->
+      <%= form_for(@team) do |f| %>  
+         <%= render 'shared/errors_messages', object: f.object %>
+        <%= f.label :team_name %>
+        <%= f.text_field :name, class: 'form-control',placeholder:"Team Name" %>
+        <br>
+        <%= f.collection_select :user_ids, User.all, :id, :full_name, {}, { multiple: true } %>
+        <hr>
+        <%= f.submit "Save Changes", class: "btn btn-info" %>
+      <% end %>
+    </div>
+</div>

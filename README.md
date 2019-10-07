@@ -33,6 +33,19 @@ Reasons? It was time consuming for a small app to test the navigation while the 
 
 - The heroku app was deployed with preexisting data from db:seed. This is to see the full webapp in motion. If run on an empty data set, there will be error. 
 
+### Rspec Test
+
+As mentioned, TDD is applied on Model method. After importing the project run below command to start a quick test on all method.
+
+~~~~
+rspec spec/models
+~~~~
+
+<pre>
+Finished in 0.62193 seconds (files took 1.05 seconds to load)
+21 examples, 0 failures</pre>
+
+
 ### Notable Method
 
 Below method used to calculate Winrate of a team. Return result is a float.

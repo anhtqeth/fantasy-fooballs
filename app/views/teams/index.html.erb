@@ -22,7 +22,7 @@
         <tbody>
           <%@teams.each.with_index do |team,index|%>
           <tr>
-            <th scope="row"><%=index%></th>
+            <th scope="row"><%=index+=1%></th>
             <td><%= team.name%></td>
             <td><%= team.users.count%></td>
             <td><%= team.users.first.full_name if team.users.first.present?%></td>

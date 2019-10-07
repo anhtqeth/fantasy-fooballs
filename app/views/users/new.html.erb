@@ -1,0 +1,19 @@
+<h1>Create new User</h1>
+<hr>
+<div class="jumbotron">
+    <div id="user-form">
+      <%= form_for(@user)  do |f| %>
+        <%= render 'shared/errors_messages', object: f.object %>
+        <div class="row">
+          <div class="col">
+            <%= f.text_field :first_name, class: 'form-control',placeholder:"First name" %>
+          </div>
+          <div class="col">
+             <%= f.text_field :last_name, class: 'form-control',placeholder:"Last name" %>
+          </div>
+        </div>
+        <hr>
+        <%= f.submit "Add", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+</div>

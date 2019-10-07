@@ -12,9 +12,10 @@ class TeamsController < ApplicationController
     end
     @team.save
     if @team.save
+      flash[:success] = "Team Added"
       redirect_back(fallback_location: teams_path)
     else
-     
+      flas
     end
   end
   

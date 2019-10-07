@@ -15,9 +15,9 @@
               <!--<= select(:teamAgames,:id,options_for_select(Team.all.map{|x| x.name}))%>-->
               <hr>
               <%= fields_for "teamAgames[scores]" do |score| %>
-                <p><%= score.select :game1, @score_range%> </p>
-                <p><%= score.select :game2, @score_range%> </p>
-                <p><%= score.select :game3, @score_range%> </p>
+                <p>Game 1 Score <%= score.select :game1, @score_range%></p>
+                <p>Game 2 Score <%= score.select :game2, @score_range%></p>
+                <p>Game 3 Score <%= score.select :game3, @score_range%></p>
               <%end%>
           </div>
           <div class="col">
@@ -26,9 +26,9 @@
               <!--<= select(:teamBgames,:id,options_for_select(Team.all.map{|x| x.name}))%>-->
               <hr>
               <%= fields_for "teamBgames[scores]" do |score| %>
-                <p><%= score.select :game1, @score_range%> </p>
-                <p><%= score.select :game2, @score_range%> </p>
-                <p><%= score.select :game3, @score_range%> </p>
+                <p><%= score.select :game1, @score_range%></p>
+                <p><%= score.select :game2, @score_range%></p>
+                <p><%= score.select :game3, @score_range%></p>
               <%end%>
           </div>
         </div>
